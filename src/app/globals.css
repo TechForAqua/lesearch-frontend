@@ -1,24 +1,131 @@
 @import "tailwindcss";
 
+/* @custom-variant dark (&:where(.dark, .dark *)); */
+
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Base colors */
+  --color-background: #f8fafc;
+  --color-foreground: #0f172a;
+
+  /* Card colors */
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(222 47% 11%);
+
+  /* Popover colors */
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(222 47% 11%);
+
+  /* Primary colors */
+  --color-primary: #155dfc; /* Kept your brand blue */
+  --color-primary-foreground: #ffffff;
+
+  /* Secondary colors */
+  --color-secondary: #e0f2fe; /* Lighter blue that complements primary */
+  --color-secondary-foreground: #0c4a6e;
+
+  /* Muted colors */
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+
+  /* Accent colors */
+  --color-accent: #dbeafe; /* Light blue accent */
+  --color-accent-foreground: #1e40af;
+
+  /* Destructive colors */
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #f8fafc;
+
+  /* Border, input, and ring colors */
+  --color-border: #e2e8f0;
+  --color-input: #cbd5e1;
+  --color-ring: #155dfc; /* Match primary for focus rings */
+
+  /* Border radius */
+  --radius: 0.5rem;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.dark {
+  --color-background: #0f172a; /* Darker blue-tinted background */
+  --color-foreground: #e2e8f0;
+
+  --color-card: hsl(222 47% 11%);
+  --color-card-foreground: hsl(210 40% 98%);
+
+  --color-popover: hsl(222 47% 11%);
+  --color-popover-foreground: hsl(210 40% 98%);
+
+  --color-primary: #3b82f6; /* Slightly lighter blue for dark mode */
+  --color-primary-foreground: #f8fafc;
+
+  --color-secondary: #1e293b;
+  --color-secondary-foreground: #bfdbfe;
+
+  --color-muted: #1e293b;
+  --color-muted-foreground: #94a3b8;
+
+  --color-accent: #1e3a8a; /* Darker blue accent */
+  --color-accent-foreground: #e0f2fe;
+
+  --color-destructive: #b91c1c;
+  --color-destructive-foreground: #f8fafc;
+
+  --color-border: #334155;
+  --color-input: #1e293b;
+  --color-ring: #60a5fa;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes typing {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+  100% {
+    content: "";
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.typing-animation::after {
+  content: "";
+  animation: typing 1.5s infinite;
 }
+
+html {
+  height: 100%;
+  height: 100vh;
+}
+
+body {
+  height: auto;
+  width: auto;
+  min-height: 100%;
+  min-height: 100vh;
+  color: var(--color-foreground);
+  background: var(--color-background);
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+/* emojimart */
+em-emoji-picker {
+  --rgb-background: inherit;
+  --font-size: 14px;
+  --font-family: inherit;
+  --border-radius: inherit;
+  --shadow: none;
+}
+
